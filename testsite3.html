@@ -1,0 +1,116 @@
+<html>
+
+	<head>
+		<title>Dom test page</title>
+		<script type="text/javascript" src="https://cdns.us1.gigya.com/js/gigya.js?apiKey=3_HCalFtInj--1FsLPEnTrEB0G1up6BDobQ16YVTt00VBL4DrFYK54Vy_g-zeu6gNw">				{
+		lang: 'alex-test'
+		}
+		</script>
+
+	</head>
+
+	<body>
+
+		<div id="RAASLogin"></div>
+
+
+		<script type="text/javascript">
+
+			function onErrorEvent (e){
+				alert(JSON.stringify(e));
+			}
+
+			function onLoginEvent(e){
+				console.log("oAccountsnLoginEvent")
+				document.getElementById('ai-login.uid').innerHTML = e.UID;
+				document.getElementById('ai-login.source').innerHTML = e.source;
+				document.getElementById('ai-login.context').innerHTML = e.context;
+				document.getElementById('ai-login.loginMode').innerHTML = e.loginMode;
+				document.getElementById('ai-login.provider').innerHTML = e.provider;
+				document.getElementById('ai-login.fullEventName').innerHTML = e.fullEventName;
+
+				gigya.accounts.getAccountInfo({
+					callback: function (cb) {
+						document.getElementById('ai-getAI.uid').innerHTML =cb.UID;
+						document.getElementById('ai-getAI.data.subscribe').innerHTML = cb.data.subscribe;
+						document.getElementById('ai-getAI.data.terms').innerHTML = cb.data.terms;
+						document.getElementById('ai-getAI.socialProviders').innerHTML = cb.socialProviders;
+						document.getElementById('ai-getAI.profile.email').innerHTML = cb.profile.email;
+						document.getElementById('ai-getAI.profile.photoURL').innerHTML = cb.profile.photoURL;
+						document.getElementById('ai-getAI.profile.thumbnailURL').innerHTML = cb.profile.thumbnailURL;
+					}
+				});
+			}
+
+			function onSocialLoginHandler(e){
+				console.log("onSocialLoginHandler")
+			}
+
+			function onLogoutEvent (e){
+				document.getElementById('ai-logout.eventName').innerHTML = e.eventName;
+				document.getElementById('ai-logout.fullEventName').innerHTML = e.fullEventName;
+			}
+
+			var params = {
+			customLang: {
+				this_field_is_required: '%fieldname is required.'
+			},
+				lang: 'en',
+				// containerID: 'RAASLogin',
+				authFlow: 'popup',
+				// screenSet: 'e2e_0001-RegistrationLogin',
+				// context: 'e2e_0001-RegistrationLogin context',
+				// communicationLangByScreenSet: false,
+				// startScreen: 'username-reg',
+				// startScreen: 'gigya-mobile-login-screen',
+				// startScreen: 'gigya-register-screen',
+				// startScreen: 'dupreg',
+				startScreen: 'devicecode',
+				// screenSet: 'set1-ProfileUpdate',
+				// screenSet: 'onelang-RegistrationLogin',
+				// screenSet: 'Default-PasswordlessLogin',
+				// screenSet: '01_28_21-LiteRegistration',
+				// screenSet: 'Default-RegistrationLogin',
+				screenSet: 'wcag-RegistrationLogin',
+				sessionExpiration: -2
+			}
+
+			window.onGigyaServiceReady = function (serviceName) {
+				gigya.socialize.addEventHandlers({ onLogin: onSocialLoginHandler }),
+				document.getElementById('ai-ready').innerHTML = "True";
+				gigya.accounts.addEventHandlers({
+					onLogin: onLoginEvent,
+					onLogout: onLogoutEvent,
+					onError: onErrorEvent
+				});
+				gigya.accounts.showScreenSet(params);
+			};
+
+
+		</script>
+
+		<div> <b> Ready <span id='ai-ready'>False </span></b> </div>
+		<br>
+		<div> <b> getAccountInfo </b> </div>
+		<div> UID: <span id='ai-getAI.uid'> </span> </div>
+		<div> data.subscribe: <span id='ai-getAI.data.subscribe'> </span> </div>
+		<div> data.terms: <span id='ai-getAI.data.terms'> </span> </div>
+		<div> socialProviders: <span id='ai-getAI.socialProviders'> </span> </div>
+		<div> profile.email: <span id='ai-getAI.profile.email'> </span> </div>
+		<div> profile.photoURL: <span id='ai-getAI.profile.photoURL'> </span> </div>
+		<div> profile.thumbnailURL: <span id='ai-getAI.profile.thumbnailURL'> </span> </div>
+		<br>
+		<div> <b> onLogin event </b> </div>
+		<div> UID: <span id='ai-login.uid'> </span> </div>
+		<div> source: <span id='ai-login.source'> </span> </div>
+		<div> context: <span id='ai-login.context'> </span> </div>
+		<div> loginMode: <span id='ai-login.loginMode'> </span> </div>
+		<div> provider: <span id='ai-login.provider'> </span> </div>
+		<div> fullEventName: <span id='ai-login.fullEventName'> </span> </div>
+		<br>
+		<div> <b> onLogout</b> </div>
+		<div> eventName: <span id='ai-logout.eventName'> </span> </div>
+		<div> fullEventName: <span id='ai-logout.fullEventName'> </span> </div>
+
+	</body>
+</html>
