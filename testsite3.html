@@ -1,116 +1,196 @@
 <html>
 
-	<head>
-		<title>Dom test page</title>
-		<script type="text/javascript" src="https://cdns.us1.gigya.com/js/gigya.js?apiKey=3_HCalFtInj--1FsLPEnTrEB0G1up6BDobQ16YVTt00VBL4DrFYK54Vy_g-zeu6gNw">				{
-		lang: 'alex-test'
+<head>
+	<title>Limor's test page</title>
+	<link rel="stylesheet" type="text/css" href="./style.css">
+	<script type="text/javascript" src="https://cdns.us1.gigya.com/js/gigya.js?apiKey=4_KXyxEUYblmnYLY1PhGK7UQ">
+		{
+			enabledProviders: 'testnetwork3,testnetwork4'
 		}
-		</script>
+	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+	<script>
+		gigya._.providers.arProviders.push(new gigya._.providers.Provider(6016, 'testnetwork3', 650, 400, 'login,friends,actions,status,photos,places,checkins', true));
+		gigya._.providers.arProviders.push(new gigya._.providers.Provider(6017, 'testnetwork4', 650, 400, 'login,friends,actions,status,photos,places,checkins', true));
+	</script>
+</head>
 
-	</head>
-
-	<body>
-
-		<div id="RAASLogin"></div>
+<body>
 
 
-		<script type="text/javascript">
+<script type="text/javascript">
 
-			function onErrorEvent (e){
-				alert(JSON.stringify(e));
+	function onErrorEvent(e) {
+		alert(JSON.stringify(e));
+	}
+
+	function onLoginEvent(e) {
+		if (e.UID) {
+			console.log("onLoginEvent");
+			document.getElementById('sdkEventData').innerHTML = 'Event name: ' + e.eventName;
+			getAccountInfo();
+		}
+	}
+
+	function onLogoutEvent(e) {
+		console.log("onLogoutEvent");
+		document.getElementById('sdkEventData').innerHTML = 'Event name: ' + e.eventName;
+		document.getElementById('uid').innerHTML = null;
+		document.getElementById('firstName').innerHTML = null;
+	}
+
+	window.onGigyaServiceReady = function (serviceName) {
+		gigya.accounts.addEventHandlers({
+			onLogin: onLoginEvent,
+			onLogout: onLogoutEvent,
+			onError: onErrorEvent
+		});
+		getAccountInfo();
+
+		// if(document.getElementById('uid').innerHTML !== null )
+		// 	gigya.accounts.showScreenSet({'screenSet':'Demo-ProfileUpdate'});
+		// else
+		// 	gigya.accounts.showScreenSet({'screenSet':'Demo-RegistrationLogin'});
+	};
+
+	function getAccountInfo() {
+		gigya.accounts.getAccountInfo({
+			callback: function (cb) {
+				if (cb.UID) {
+					document.getElementById('uid').innerHTML = `UID: ${cb.UID}`;
+					document.getElementById('firstName').innerHTML = cb.profile.firstName;
+				} else
+					document.getElementById('uid').innerHTML = `You're logged out`;
 			}
+		});
+	}
 
-			function onLoginEvent(e){
-				console.log("oAccountsnLoginEvent")
-				document.getElementById('ai-login.uid').innerHTML = e.UID;
-				document.getElementById('ai-login.source').innerHTML = e.source;
-				document.getElementById('ai-login.context').innerHTML = e.context;
-				document.getElementById('ai-login.loginMode').innerHTML = e.loginMode;
-				document.getElementById('ai-login.provider').innerHTML = e.provider;
-				document.getElementById('ai-login.fullEventName').innerHTML = e.fullEventName;
+	function login() {
+		gigya.accounts.showScreenSet({
+			screenSet: 'Default-RegistrationLogin',
+			startScreen: 'gigya-login-screen',
+			containerID: 'showScreenset'
+		});
+	}
 
-				gigya.accounts.getAccountInfo({
-					callback: function (cb) {
-						document.getElementById('ai-getAI.uid').innerHTML =cb.UID;
-						document.getElementById('ai-getAI.data.subscribe').innerHTML = cb.data.subscribe;
-						document.getElementById('ai-getAI.data.terms').innerHTML = cb.data.terms;
-						document.getElementById('ai-getAI.socialProviders').innerHTML = cb.socialProviders;
-						document.getElementById('ai-getAI.profile.email').innerHTML = cb.profile.email;
-						document.getElementById('ai-getAI.profile.photoURL').innerHTML = cb.profile.photoURL;
-						document.getElementById('ai-getAI.profile.thumbnailURL').innerHTML = cb.profile.thumbnailURL;
-					}
-				});
-			}
+	function register() {
+		gigya.accounts.showScreenSet({
+			screenSet: 'Default-RegistrationLogin',
+			startScreen: 'gigya-register-screen',
+			containerID: 'showScreenset'
+		});
+	}
 
-			function onSocialLoginHandler(e){
-				console.log("onSocialLoginHandler")
-			}
+	function profile() {
+		gigya.accounts.showScreenSet({
+			screenSet: 'Default-ProfileUpdate',
+			startScreen: 'gigya-update-profile-screen',
+			containerID: 'showScreenset'
+		});
+	}
 
-			function onLogoutEvent (e){
-				document.getElementById('ai-logout.eventName').innerHTML = e.eventName;
-				document.getElementById('ai-logout.fullEventName').innerHTML = e.fullEventName;
-			}
+	function otp() {
+		gigya.accounts.showScreenSet({
+			screenSet: 'Default-RegistrationLogin',
+			startScreen: 'gigya-mobile-login-screen',
+			containerID: 'showScreenset'
+		});
 
-			var params = {
-			customLang: {
-				this_field_is_required: '%fieldname is required.'
-			},
-				lang: 'en',
-				// containerID: 'RAASLogin',
-				authFlow: 'popup',
-				// screenSet: 'e2e_0001-RegistrationLogin',
-				// context: 'e2e_0001-RegistrationLogin context',
-				// communicationLangByScreenSet: false,
-				// startScreen: 'username-reg',
-				// startScreen: 'gigya-mobile-login-screen',
-				// startScreen: 'gigya-register-screen',
-				// startScreen: 'dupreg',
-				startScreen: 'devicecode',
-				// screenSet: 'set1-ProfileUpdate',
-				// screenSet: 'onelang-RegistrationLogin',
-				// screenSet: 'Default-PasswordlessLogin',
-				// screenSet: '01_28_21-LiteRegistration',
-				// screenSet: 'Default-RegistrationLogin',
-				screenSet: 'wcag-RegistrationLogin',
-				sessionExpiration: -2
-			}
+	}
 
-			window.onGigyaServiceReady = function (serviceName) {
-				gigya.socialize.addEventHandlers({ onLogin: onSocialLoginHandler }),
-				document.getElementById('ai-ready').innerHTML = "True";
-				gigya.accounts.addEventHandlers({
-					onLogin: onLoginEvent,
-					onLogout: onLogoutEvent,
-					onError: onErrorEvent
-				});
-				gigya.accounts.showScreenSet(params);
-			};
+	function lite() {
+		gigya.accounts.showScreenSet({
+			screenSet: 'Default-LiteRegistration',
+			startScreen: 'gigya-subscribe-with-email-screen',
+			containerID: 'showScreenset'
+		});
+	}
+
+	function passwordless() {
+		gigya.accounts.showScreenSet({
+			screenSet: 'Default-PasswordlessLogin',
+			startScreen: 'gigya-passwordless-login-screen',
+			containerID: 'showScreenset'
+		});
+	}
+
+	function resetPassword() {
+		gigya.accounts.showScreenSet({
+			screenSet: 'Default-RegistrationLogin',
+			startScreen: 'gigya-reset-password-screen',
+			containerID: 'showScreenset'
+		});
+	}
+
+	function changeEmail() {
+		gigya.accounts.showScreenSet({
+			screenSet: 'Default-RegistrationLogin',
+			startScreen: 'gigya-change-email-screen',
+			containerID: 'showScreenset'
+		});
+	}
+
+	function progression() {
+		gigya.accounts.showScreenSet({
+			screenSet: 'Default-RegistrationLogin',
+			startScreen: 'gigya-lite-account-progression-screen',
+			containerID: 'showScreenset'
+		});
+	}
+
+	function passKey() {
+		gigya.accounts.showScreenSet({
+			screenSet: 'Default-RegistrationLogin',
+			startScreen: 'gigya-passkey-registration-screen',
+			containerID: 'showScreenset'
+		});
+	}
+
+	function SMS_subscriptions() {
+		gigya.accounts.showScreenSet({
+			screenSet: 'Default-Subscriptions',
+			startScreen: 'gigya-sms-subscription-subscribe-anonymous-screen',
+			containerID: 'showScreenset'
+		});
+	}
+
+</script>
 
 
-		</script>
+<!--<div> <b> Ready <span id='ai-ready'>False </span></b> </div>-->
+<!--<br>-->
+<!--<br>-->
+<!--<div> <b> APIkey </b> </div>-->
+<!--<br>-->
+<!--<br>-->
+<!--<div> <b> DC-ENV </b> </div>-->
+<!--<br>-->
+<!--<br>-->
+<h1><b> Welcome </b> <span id='firstName'> </span></h1>
+<br>
+<div><span id='uid'> </span></div>
+<br><br><br>
+<input value="Login" type="button" className="button" onClick="login()"/>
+<input value="Register" type="button" className="button" onClick="register()"/>
+<input value="Account Info" type="button" className="button" onClick="profile()"/>
+<br><br><br>
+<input value="Lite" type="button" className="button" onClick="lite()"/>
+<input value="Progression" type="button" className="button" onClick="progression()"/>
+<input value="Mobile Login" type="button" className="button" onClick="otp()"/>
+<input value="subscribe with SMS" type="button" className="button" onClick="SMS_subscriptions()"/>
+<br><br><br>
+<input value="Passwordless" type="button" className="button" onClick="passwordless()"/>
+<input value="Password Reset" type="button" className="button" onClick="resetPassword()"/>
+<input value="changeEmail" type="button" className="button" onClick="changeEmail()"/>
+<input value="passKey" type="button" className="button" onClick="passKey()"/>
+<br><br><br>
+<input value="Logout" type="button" className="button" onClick="gigya.accounts.logout()"/>
 
-		<div> <b> Ready <span id='ai-ready'>False </span></b> </div>
-		<br>
-		<div> <b> getAccountInfo </b> </div>
-		<div> UID: <span id='ai-getAI.uid'> </span> </div>
-		<div> data.subscribe: <span id='ai-getAI.data.subscribe'> </span> </div>
-		<div> data.terms: <span id='ai-getAI.data.terms'> </span> </div>
-		<div> socialProviders: <span id='ai-getAI.socialProviders'> </span> </div>
-		<div> profile.email: <span id='ai-getAI.profile.email'> </span> </div>
-		<div> profile.photoURL: <span id='ai-getAI.profile.photoURL'> </span> </div>
-		<div> profile.thumbnailURL: <span id='ai-getAI.profile.thumbnailURL'> </span> </div>
-		<br>
-		<div> <b> onLogin event </b> </div>
-		<div> UID: <span id='ai-login.uid'> </span> </div>
-		<div> source: <span id='ai-login.source'> </span> </div>
-		<div> context: <span id='ai-login.context'> </span> </div>
-		<div> loginMode: <span id='ai-login.loginMode'> </span> </div>
-		<div> provider: <span id='ai-login.provider'> </span> </div>
-		<div> fullEventName: <span id='ai-login.fullEventName'> </span> </div>
-		<br>
-		<div> <b> onLogout</b> </div>
-		<div> eventName: <span id='ai-logout.eventName'> </span> </div>
-		<div> fullEventName: <span id='ai-logout.fullEventName'> </span> </div>
+<div id="showScreenset"></div>
+<br><br>
+<h1><b> Events </b>  </span> </h1>
+<span id="sdkEventData"></span>
 
-	</body>
+
+</body>
 </html>
