@@ -1,0 +1,51 @@
+body {
+    background-image: url("https://assets.unileversolutions.com/v1/104516393.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+nav {
+    background-color: white;
+    height: 100px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+}
+
+.logo {
+    float: left;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+img {
+    width: 100px;
+    height: auto;
+}
+
+ul {
+    float: right;
+    margin-top: 15px;
+}
+
+li {
+    list-style-type: none;
+    float: left;
+    padding: 0 15px;
+}
+
+a {
+    text-decoration: none;
+    color: green;
+    font-size: 16px;
+}
+
+a:hover {
+    color: black;
+}
+
+h1 {
+    color: white;
+}
