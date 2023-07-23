@@ -149,8 +149,8 @@
 								//containerID: 'showScreenset',
 								context: "loginInsteadRegister",
 								onAfterScreenLoad: (event) => {
-									gigya._.plugins.instances.showScreenset.data = {
-										...gigya._.plugins.instances.showScreenset.data,
+									gigya._.plugins.instances.screenSet.data = {
+										...gigya._.plugins.instances.screenSet.data,
 										otpData: { vToken: vToken }
 									}
 									//event.formModel['vToken'] = event.context;
