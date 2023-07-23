@@ -98,9 +98,10 @@
 				//screenSet: 'Demo-ProfileUpdate',
 				screenSet: 'Default-ProfileUpdate',
 				startScreen: 'gigya-update-profile-screen',
-				containerID: 'showScreenset'
+				//containerID: 'showScreenset'
 			});
 	}
+	function logout() { gigya.accounts.logout(); }
 
 	function otp() {
 		gigya.accounts.showScreenSet({
