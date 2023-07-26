@@ -1,10 +1,10 @@
 <html>
 
 <head>
-	<title>Knorr Guest</title>
+	<title>Knorr Guest OTP</title>
 	<link rel="stylesheet" type="text/css" href="css/guest.css">
+<!--	<script type="text/javascript" src="https://cdns.il3-st5.gigya.com/js/gigya.js?apiKey=4_15X53S5yOTQRWlYmoGsu1Q">-->
 	<script type="text/javascript" src="https://cdns.us1-st2.gigya.com/js/gigya.js?apiKey=4_r-A0Kuhq2_rRq7KETIOxyg">
-	// <script type="text/javascript" src="https://cdns.il3-st5.gigya.com/js/gigya.js?apiKey=4__yUz53znsp3DFUtyWrcwzQ">
 	{
 		enabledProviders: 'testnetwork3,testnetwork4'
 	}
@@ -123,7 +123,8 @@
 
 	function guest() {
 		gigya.accounts.showScreenSet({
-			screenSet: 'Default-OneAccountSubscription',
+			//screenSet: 'Default-OneAccountSubscription',
+			screenSet: 'demo-poc-1',
 			//startScreen: 'gigya-subscribe-with-email-screen',
 			//containerID: 'showScreenset'
 		});

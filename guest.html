@@ -3,8 +3,8 @@
 <head>
 	<title>Knorr Guest</title>
 	<link rel="stylesheet" type="text/css" href="css/guest.css">
+<!--	<script type="text/javascript" src="https://cdns.il3-st5.gigya.com/js/gigya.js?apiKey=4__yUz53znsp3DFUtyWrcwzQ">-->
 	<script type="text/javascript" src="https://cdns.us1-st2.gigya.com/js/gigya.js?apiKey=4_jrYp5BuKZenarXK9aLYN-w">
-	// <script type="text/javascript" src="https://cdns.il3-st5.gigya.com/js/gigya.js?apiKey=4__yUz53znsp3DFUtyWrcwzQ">
 	{
 		enabledProviders: 'testnetwork3,testnetwork4'
 	}
@@ -123,7 +123,9 @@
 
 	function guest() {
 		gigya.accounts.showScreenSet({
-			screenSet: 'Default-OneAccountSubscription',
+			//screenSet: 'Default-OneAccountSubscription',
+			//screenSet: 'demo-poc-including-data',
+			screenSet: 'demo-poc-1',
 			//startScreen: 'gigya-subscribe-with-email-screen',
 			//containerID: 'showScreenset'
 		});

@@ -29,14 +29,14 @@
 	function onLoginEvent(e){
 		if (e.UID){
 			console.log("onLoginEvent");
-			document.getElementById('sdkEventData').innerHTML = 'Event name: '+e.eventName;
+			//document.getElementById('sdkEventData').innerHTML = 'Event name: '+e.eventName;
 			getAccountInfo();
 		}
 	}
 
 	function onLogoutEvent (e){
 		console.log("onLogoutEvent");
-		document.getElementById('sdkEventData').innerHTML = 'Event name: '+e.eventName;
+		//document.getElementById('sdkEventData').innerHTML = 'Event name: '+e.eventName;
 		document.getElementById('uid').innerHTML = null;
 		document.getElementById('firstName').innerHTML = null;
 	}
@@ -101,7 +101,6 @@
 				//containerID: 'showScreenset'
 			});
 	}
-	function logout() { gigya.accounts.logout(); }
 
 	function otp() {
 		gigya.accounts.showScreenSet({
@@ -208,6 +207,8 @@
 			containerID: 'showScreenset'
 		});
 	}
+	function logout() { gigya.accounts.logout(); }
+
 
 </script>
 
@@ -224,9 +225,10 @@
 		<li><a href="javascript:logout()">Logout</a></li>
 	</ul>
 </nav>
+<br><br><br><br><br>
 <h1> <b> Welcome </b> <span id='firstName'> </span> </h1>
 <br>
-<div> <span id='uid'> </span> </div>
+<h1> <div> <span id='uid'> </span> </div></h1>
 <br><br><br>
 <!--<input value="Login" type="button" class="button" onclick="login()" />-->
 <!--<input value="Register" type="button" class="button" onclick="register()" />-->
