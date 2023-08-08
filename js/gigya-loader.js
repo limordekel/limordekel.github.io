@@ -1,11 +1,15 @@
-var params = new Proxy(new URLSearchParams(window.location.search), {
+let defaultApikey = '4_jrYp5BuKZenarXK9aLYN-w';
+let defaultDc = 'us1-st2';
+
+let queryParams = new Proxy(new URLSearchParams(window.location.search), {
     get: (searchParams, prop) => searchParams.get(prop),
 });
 
-let apikey = params.apikey, dc = params.dc;
+let apikey = queryParams.apikey ?? defaultApikey
+let dc = queryParams.dc ?? defaultDc;
 let url = "https://cdns." + dc + ".gigya.com/js/gigya.js?" + "apiKey=" + apikey;
 
-var script = document.createElement("script");
+let script = document.createElement("script");
 script.type = "text/javascript";
 script.src = url;
 script.innerContent = document.currentScript.innerContent;
