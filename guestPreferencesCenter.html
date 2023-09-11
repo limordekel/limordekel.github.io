@@ -41,6 +41,9 @@
 	}
 
 	window.onGigyaServiceReady = function (serviceName) {
+
+		gigya.accounts.showScreenSet({screenSet: 'Default-GuestPreferencesLink'});
+
 		gigya.accounts.addEventHandlers({
 			onLogin: onLoginEvent,
 			onLogout: onLogoutEvent,
