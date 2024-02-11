@@ -3,8 +3,8 @@
 <head>
 	<title>Knorr Guest</title>
 	<link rel="stylesheet" type="text/css" href="css/guest.css">
-	<!-- <script type="text/javascript" src="https://cdns.il3-st5.gigya.com/js/gigya.js?apiKey=4__yUz53znsp3DFUtyWrcwzQ"></script> -->
-	<script type="text/javascript" src="https://cdns.us1-st2.gigya.com/js/gigya.js?apiKey=4_jrYp5BuKZenarXK9aLYN-w"></script>
+	<!-- <script type="text/javascript" src="https://cdns.us1-st2.gigya.com/js/gigya.js?apiKey=4_jrYp5BuKZenarXK9aLYN-w"></script> -->
+	<script type="text/javascript" src="https://cdns.eu1-st2.gigya.com/js/gigya.js?apiKey=4_zpE_ybLtKewMynieieqRLg"></script>
 	{
 		enabledProviders: 'testnetwork3,testnetwork4'
 	}
@@ -123,11 +123,8 @@
 
 	function guestEmail() {
 		gigya.accounts.showScreenSet({
-			//screenSet: 'Default-GuestInteraction-communications',
-			//screenSet: 'Default-GuestInteraction-phone',
-			screenSet: 'Default-GuestInteraction',//with consent
-			//screenSet: 'TEST-Bashar',//with consent
-			//screenSet: 'demo-poc-1',//without consent
+			//screenSet: '1510-GuestInteraction',
+			screenSet: 'Default-GuestInteraction',
 			//containerID: 'showScreenset'
 		});
 	}
@@ -135,8 +132,8 @@
 	function guestPhone() {
 		gigya.accounts.showScreenSet({
 			//screenSet: 'Default-GuestInteraction-communications',
-			screenSet: 'Default-GuestInteraction-phone',
-			//screenSet: 'Default-GuestInteraction',//with consent
+			screenSet: 'Default-GuestInteraction',
+			startScreen: 'phone',//with consent
 			//screenSet: 'TEST-Bashar',//with consent
 			//screenSet: 'demo-poc-1',//without consent
 			//containerID: 'showScreenset'

@@ -4,7 +4,7 @@
 	<title>Limor's test page</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<!-- <script type="text/javascript" src="./js/gigya-loader.js"> -->
-	<script type="text/javascript" src="https://cdns.us1.gigya.com/js/gigya.js?apiKey=4_HvkdovNTAdM9AzAYKXsn9w">
+	<script type="text/javascript" src="https://cdns.us1-st2.gigya.com/js/gigya.js?apiKey=3_1qnfnWI5HVbLum-aBxk3CPSd6yMo8lQFjcbm_NVvypp9lkrOjJS68i8J8e0kd71I">
 	{
 		enabledProviders: 'testnetwork3,testnetwork4'
 				//lang: 'he'
@@ -222,11 +222,11 @@
 		});
 	}
 
-	function progression() {
+	function Progression() {
 		gigya.accounts.showScreenSet({
-			screenSet: 'Default-RegistrationLogin',
+			screenSet: 'fido-RegistrationLogin',
 			startScreen: 'gigya-lite-account-progression-screen',
-			containerID: 'showScreenset'
+			//containerID: 'showScreenset'
 		});
 	}
 
@@ -317,6 +317,7 @@
 <input value="EditTFA" type="button" class="button" onclick="EditTFA()" />
 <input value="RegisterTFA" type="button" class="button" onclick="RegisterTFA()" />
 <input value="VerifyTFA" type="button" class="button" onclick="VerifyTFA()" />
+<input value="Progression" type="button" class="button" onclick="Progression()" />
 <br><br><br>
 <input value="Logout" type="button" class="button" onclick="gigya.accounts.logout()" />
 
