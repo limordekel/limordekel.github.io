@@ -1,0 +1,22 @@
+<html>
+<head>
+   <script type="text/javascript" lang="javascript" src="http://cdn.gigya.com/js/gigya.js?apikey=4_bkpOdHNLcE7Oddx5pRLTsQ">
+</script>
+</head>
+<body>
+    <div id="container"></div>
+    <script>
+        gigya.socialize.addEventHandlers({
+            onLogin: function() {
+                gigya.fidm.saml.continueSSO();
+            }
+        });
+ 
+        gigya.accounts.showScreenSet({
+                screenSet: 'Default-RegistrationLogin',
+                containerID: "container",
+                //sessionExpiration: '20000'
+        });
+    </script>   
+</body>
+</html>
