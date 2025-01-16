@@ -4,6 +4,7 @@
 	<title>Knorr Guest</title>
 	<link rel="stylesheet" type="text/css" href="css/guest.css">
 	<script type="text/javascript" src="https://cdns.il3-st5.gigya.com/js/gigya.js?apiKey=6_2_3XuGnKX6Nv-6Ro88hanbsw"></script>
+	<!-- <script type="text/javascript" src="https://cdns.au1-st1.gigya.com/js/gigya.js?apiKey=4_uAMKvdsPWXzhTVxxCxxAOg"></script> -->
 	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 	<script>
@@ -23,11 +24,12 @@
                 gigya.accounts.showScreenSet({ screenSet: 'Default-PreferencesCenter', startScreen: 'gigya-preferences-center-screen' });
             } else if (res.errorCode === 401003) {  // Authentication Required
                 gigya.accounts.showScreenSet({ screenSet: 'Default-PreferencesCenter', startScreen: 'gigya-preferences-center-auth-methods-screen' });
-            } else if (res.errorCode === 403005) {  // Token Revoked
-                alert(res.errorDetails);
+            } else if (res.errorCode === 403005) {  // Token expired
+				gigya.accounts.showScreenSet({ screenSet: 'Default-IdentifierFirst', startScreen: 'gigya-identify-screen' });
             } else if (res.errorCode === 400002) {  // auth_token is missing
                 // Nothing!
-            } else {  // Other errors
+            }
+			else {  // Other errors
                 alert(JSON.stringify(res));
             }
         }
