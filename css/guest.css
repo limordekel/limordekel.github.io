@@ -1,11 +1,11 @@
 body {
-    background-image: url("https://assets.unileversolutions.com/v1/104516393.jpg");
+    background-image: url("../images/background.webp");
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 nav {
-    background-color: white;
+    
     height: 100px;
     width: 100%;
     position: fixed;
@@ -26,20 +26,20 @@ img {
 }
 
 ul {
-    float: right;
-    margin-top: 15px;
+    text-align: right;
+    margin-left: 320px;
 }
 
 li {
     list-style-type: none;
     float: left;
-    padding: 0 15px;
+    padding: 0 50px;
 }
 
 a {
     text-decoration: none;
-    color: green;
-    font-size: 16px;
+    color: black;
+    font-size: 28px;
     font-weight: bold;
 }
 

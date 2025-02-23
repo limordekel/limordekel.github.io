@@ -1,47 +1,28 @@
 <html>
-
 <head>
-	<title>Knorr Guest</title>
 	<link rel="stylesheet" type="text/css" href="css/guest.css">
-	<script type="text/javascript" src="https://cdns.il3-st5.gigya.com/js/gigya.js?apiKey=6_2_3XuGnKX6Nv-6Ro88hanbsw"></script>
-	<!-- <script type="text/javascript" src="https://cdns.au1-st1.gigya.com/js/gigya.js?apiKey=4_uAMKvdsPWXzhTVxxCxxAOg"></script> -->
-	</script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-	<script>
-		gigya._.providers.arProviders.push(new gigya._.providers.Provider(6016, 'testnetwork3', 650, 400, 'login,friends,actions,status,photos,places,checkins', true));
-		gigya._.providers.arProviders.push(new gigya._.providers.Provider(6017, 'testnetwork4', 650, 400, 'login,friends,actions,status,photos,places,checkins', true));
-	</script>
+	<!-- Bashar's -->
+	<!-- <script type="text/javascript" src="https://cdns.il3-st5.gigya.com/js/gigya.js?apiKey=6_2_GspSKrw8UdTl8f3md6bOrw"></script> -->
+	<!-- <script type="text/javascript" src="https://cdns.il3-st5.gigya.com/js/gigya.js?apiKey=6_2_kTc3VTnIMy1NbHvtzIegXw"></script> -->
+	<script type="text/javascript" src="https://cdns.us1.gigya.com/js/gigya.js?apiKey=4_WbmlkSMk6iFGeslzSljFCA"></script>
 </head>
 
 <body>
-	<li><a href="javascript:profile()">My account</a></li>
 	<script type="text/javascript">
 		window.onGigyaServiceReady = function (serviceName) {
     // Preferences center landing page
     gigya.session.authorize({
         callback: (res) => {
             if (res.errorCode === 0) {  // Success
-                gigya.accounts.showScreenSet({ screenSet: 'Default-PreferencesCenter', startScreen: 'gigya-preferences-center-screen' });
+                gigya.accounts.showScreenSet({ screenSet: 'Default-PreferencesCenter', startScreen: 'gigya-privacy-screen' });
             } else if (res.errorCode === 401003) {  // Authentication Required
                 gigya.accounts.showScreenSet({ screenSet: 'Default-PreferencesCenter', startScreen: 'gigya-preferences-center-auth-methods-screen' });
-            } else if (res.errorCode === 403005) {  // Token expired
-				gigya.accounts.showScreenSet({ screenSet: 'Default-IdentifierFirst', startScreen: 'gigya-identify-screen' });
-            } else if (res.errorCode === 400002) {  // auth_token is missing
-                // Nothing!
-            }
-			else {  // Other errors
-                alert(JSON.stringify(res));
-            }
+			} else {  // Other errors
+				alert(JSON.stringify(res));
+			}
         }
     });
 };
-
-function profile() {
-			gigya.accounts.showScreenSet({
-				screenSet: 'Default-ProfileUpdate',
-				startScreen: 'gigya-update-profile-screen',
-			});
-	}
 	</script>
 
 </body>

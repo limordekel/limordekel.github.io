@@ -3,16 +3,13 @@
 <head>
 	<title>One Account Demo</title>
 	<link rel="stylesheet" type="text/css" href="css/guest.css">
-	
-	<!-- <script type="text/javascript" src="https://cdns.us1-st1.gigya.com/js/gigya.js?apiKey=4_YzJyZrTRzOCnQdwV7YVvIw"></script> -->
-	<!-- <script type="text/javascript" src="https://cdns.il3-st5.gigya.com/js/gigya.js?apiKey=6_2_oyewae0D1m4EUcK2O_ZxJQ"></script> -->
-	<script type="text/javascript" src="https://cdns.il3-st5.gigya.com/js/gigya.js?apiKey=6_2_3XuGnKX6Nv-6Ro88hanbsw"></script>
-	<!-- <script type="text/javascript" src="https://cdns.gigya.com/js/gigya.js?apiKey=4_0l9kczsr02o65f0N9IFNtA"></script> -->
-	<!-- <script type="text/javascript" src="https://cdns.il3-st5.gigya.com/js/gigya.js?apiKey=6_2_PJFXiLgLVxMj1S6Q-ozw3Q"></script> -->
-	{
-		//enabledProviders: 'testnetwork3,testnetwork4'
-		//lang: 'he'
-	}
+	<!-- Bashar's -->
+	<!-- <script type="text/javascript" src="https://cdns.il3-st5.gigya.com/js/gigya.js?apiKey=6_2_kTc3VTnIMy1NbHvtzIegXw"></script> -->
+	<!-- global -->
+	<!-- <script type="text/javascript" src="https://cdns.us1.gigya.com/js/gigya.js?apiKey=4_PxzLdPwRn-uKHpIE6d5Jhw"></script> -->
+	<script type="text/javascript" src="https://cdns.us1.gigya.com/js/gigya.js?apiKey=4_WbmlkSMk6iFGeslzSljFCA"></script>
+	<!-- il3-st5
+	<script type="text/javascript" src="https://cdns.il3-st5.gigya.com/js/gigya.js?apiKey=6_2_GspSKrw8UdTl8f3md6bOrw"></script> -->
 	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 	<script>
@@ -50,49 +47,8 @@
 		gigya.accounts.addEventHandlers({
 			onLogin: onLoginEvent,
 			onErrorEvent: onErrorEvent
-			//onLogout: onLogoutEvent,
-			//onTokenExchanged: onTokenExchanged,
-	// 		onTokenExchangeSuccess:onTokenExchanged,
-	// 		onTokenExchangeFail: (eventData) => {
-    //   console.log(eventData);
-	//   gigya.accounts.showScreenSet({
-	// 		//screenSet: 'prefCenter9-RegistrationLogin',
-	//  		//startScreen: 'gigya-mobile-login-screen',
-	// 		screenSet: 'prefCenter9-Passwordle ssLogin',
-	// 		startScreen: 'gigya-passwordless-login-screen',
-    // 	})
-	 
-    // },
 		});
-		//getAccountInfo();
-		//gigya.setAccountResidency('eu1');
-		// gigya.accounts.showScreenSet({
-		// 	screenSet: 'Default-OneAccountSubscription',
-			//startScreen: 'gigya-subscribe-with-email-screen',
-			//containerID: 'showScreenset'
-		// });
-		// if(document.getElementById('uid').innerHTML !== null )
-		// 	gigya.accounts.showScreenSet({'screenSet':'Demo-ProfileUpdate'});
-		// else
-		// 	gigya.accounts.showScreenSet({'screenSet':'Demo-RegistrationLogin'});
 	};
-
-	function onTokenExchanged(e){
-    console.log('tokenExchanged', e);
-    gigya.accounts.getAccountInfo({
-        callback: res => console.log('getAccountInfo Response: ', res),
-        include: 'profile,data,preferences',
-		includeCommunications: 'all',
-        regToken: e.regToken
-    });
-	
-    gigya.accounts.showScreenSet({
-        screenSet: 'Default-GuestInteraction',
-		startScreen: 'gigya-preferences-center-screen',
-		//startScreen: 'prefCenter_phone',
-        regToken: e.regToken
-    })
-}
 
 	function getAccountInfo() {
 		gigya.accounts.getAccountInfo(
@@ -104,15 +60,12 @@
 					document.getElementById('firstName').innerHTML = cb.profile.firstName ? cb.profile.firstName : "" ;
 					document.getElementById('accountInfoData').innerHTML = `Email: ${cb.profile.email}`;
 				}
-				// else
-				// 	document.getElementById('uid').innerHTML = `You're logged out`;
 			}
 		});
 	}
 
 	function login() {
 		gigya.accounts.showScreenSet({
-			//screenSet: 'Demo-RegistrationLogin',
 			screenSet: 'Default-RegistrationLogin',
 			startScreen: 'gigya-login-screen',
 			containerID: 'showScreenset'
@@ -121,94 +74,29 @@
 
 	function register() {
 		gigya.accounts.showScreenSet({
-			//screenSet: 'Demo-RegistrationLogin',
 			screenSet: 'Default-RegistrationLogin',
-			//screenSet: 'prefCenter9-RegistrationLogin',
 			startScreen: 'gigya-register-screen',
-			//startScreen: 'username',
-			//containerID: 'showScreenset'
 		});
 	}
 
 	function profile() {
 			gigya.accounts.showScreenSet({
-				//screenSet: 'Demo-ProfileUpdate',
-				//screenSet: 'prefCenter9-ProfileUpdate',
 				screenSet: 'Default-ProfileUpdate',
 				startScreen: 'gigya-update-profile-screen',
-				//containerID: 'showScreenset'
 			});
 	}
 
-	function otp() {
-		gigya.accounts.showScreenSet({
-			screenSet: 'prefCenter9-RegistrationLogin',
-			//screenSet: 'Default-RegistrationLogin',
-			startScreen: 'gigya-mobile-login-screen',
-			//containerID: 'showScreenset'
-		});
 
-	}
-
-	function lite() {
-		gigya.accounts.showScreenSet({
-			screenSet: 'Default-LiteRegistration',
-			startScreen: 'gigya-subscribe-with-email-screen',
-			containerID: 'showScreenset'
-		});
-	}
-
-	function guestEmail() {
+	function guest() {
 		gigya.accounts.showScreenSet({
 			screenSet: 'Default-GuestInteraction',
-			//screenSet: '2503-GuestInteraction',
-			//screenSet: 'prefCenter9-GuestInteraction',
-			//lang:'he'
-			//screenSet: 'prefCenter9-guestWithCommunications',
-			//startScreen: 'basicGuest',
-			//containerID: 'showScreenset'
 		});
 	}
 
-	function guestEmailOTP() {
+	function IdFirstEmailOTP() {
 		gigya.accounts.showScreenSet({
-			//screenSet: 'prefCenter9-PasswordlessLogin',
-			//screenSet: 'prefCenter9-IdentifierFirst',
-			// screenSet: 'Default-PasswordlessLogin',
-			// startScreen: 'gigya-passwordless-register-screen',
 			screenSet: 'Default-IdentifierFirst',
 			startScreen: 'gigya-identify-screen'
-		});
-	}
-
-	function guestPhone() {
-		gigya.accounts.showScreenSet({
-			//screenSet: 'Default-GuestInteraction-communications',
-			//screenSet: '1802-GuestInteraction',
-			screenSet: 'Default-GuestInteraction',
-			//screenSet: 'prefCenter9-GuestInteraction',
-			startScreen: 'phone',//with consent
-			//screenSet: 'TEST-Bashar',//with consent
-			//screenSet: 'demo-poc-1',//without consent
-			//containerID: 'showScreenset'
-		});
-	}
-
-	function guestPhoneOTP() {
-		gigya.accounts.showScreenSet({
-			// screenSet: 'prefCenter9-RegistrationLogin',
-			// startScreen: 'gigya-mobile-login-screen'
-			screenSet: 'prefCenter9-IdentifierFirst',
-			startScreen: 'phone'
-			//containerID: 'showScreenset'
-		});
-	}
-
-	function passwordless() {
-		gigya.accounts.showScreenSet({
-			screenSet: 'GuestPasswordless',
-			startScreen: 'gigya-passwordless-login-screen',
-			//containerID: 'showScreenset'
 		});
 	}
 
@@ -228,14 +116,6 @@
 		});
 	}
 
-	function progression() {
-		gigya.accounts.showScreenSet({
-			screenSet: 'Default-RegistrationLogin',
-			startScreen: 'gigya-lite-account-progression-screen',
-			containerID: 'showScreenset'
-		});
-	}
-
 	function passKey() {
 		gigya.accounts.showScreenSet({
 			screenSet: 'Default-RegistrationLogin',
@@ -244,22 +124,7 @@
 		});
 	}
 
-	function EmailOTP() {
-		gigya.accounts.showScreenSet({
-			screenSet: 'Default-Passwordless Login',
-			startScreen: 'gigya-passwordless-login-screen',
-			containerID: 'showScreenset'
-		});
-	}
-
-	function SMS_subscriptions() {
-		gigya.accounts.showScreenSet({
-			screenSet: 'Default-Subscriptions',
-			startScreen: 'gigya-sms-subscription-subscribe-anonymous-screen',
-			containerID: 'showScreenset'
-		});
-	}
-
+	
 	function EditTFA() {
 		gigya.accounts.showScreenSet({
 			screenSet: 'Demo-ProfileUpdate',
@@ -286,69 +151,59 @@
 
 	function logout() { gigya.accounts.logout(); }
 
-	function PrefCenter(){
-	gigya.accounts.showScreenSet({
-		//  screenSet: 'prefCenter9-GuestInteraction',
-		 screenSet: 'Default-GuestInteraction',
-	 	startScreen: 'gigya-preferences-center-screen',
-    	})}
+	/* deprecated flows in oneAccount */
+	function EmailOTP() {
+		gigya.accounts.showScreenSet({
+			screenSet: 'Default-Passwordless Login',
+			startScreen: 'gigya-passwordless-login-screen',
+			containerID: 'showScreenset'
+		});
+	}
+
+	function lite() {
+		gigya.accounts.showScreenSet({
+			screenSet: 'Default-LiteRegistration',
+			startScreen: 'gigya-subscribe-with-email-screen',
+			containerID: 'showScreenset'
+		});
+	}
+
+	function progression() {
+		gigya.accounts.showScreenSet({
+			screenSet: 'Default-RegistrationLogin',
+			startScreen: 'gigya-lite-account-progression-screen',
+			containerID: 'showScreenset'
+		});
+	}
+
+	
+	function SMS_subscriptions() {
+		gigya.accounts.showScreenSet({
+			screenSet: 'Default-Subscriptions',
+			startScreen: 'gigya-sms-subscription-subscribe-anonymous-screen',
+			containerID: 'showScreenset'
+		});
+	}
 
 </script>
 
 
-<nav>
-	<div class="logo">
+<!-- <nav> -->
+	<!-- <div class="logo">
 		<img src="images/knorr.png">
-	</div>
+	</div> -->
 	<ul>
-		<li><a href="javascript:guestEmail()">Signup with email</a></li>
-		<li><a href="javascript:guestPhone()">Signup with phone</a></li>
-		<li><a href="javascript:guestEmailOTP()">Register with email OTP</a></li>
-		<li><a href="javascript:guestPhoneOTP()">Register with phone OTP</a></li>
-		<li><a href="javascript:register()">Register with password</a></li>
-		<li><a href="javascript:otp()">Register with mobile</a></li>
-		<li><a href="javascript:profile()">My account</a></li>
-		<li><a href="javascript:PrefCenter()">Pref Center</a></li>
+		<li><a href="javascript:guest()">Signup as Guest</a></li>
+		<li><a href="javascript:IdFirstEmailOTP()">Register</a></li>
+		<!-- <li><a href="javascript:register()">Register with password</a></li> -->
+		<li><a href="javascript:profile()">My Profile</a></li>
 		<li><a href="javascript:logout()">Logout</a></li>
-		<!-- <li><a href="javascript:passwordless()">Preferences center</a></li> -->
-		<!-- <li><a href="#">News</a></li> -->
-		<!-- <li><a href="#">Contact</a></li> -->
 	</ul>
-</nav>
+<!-- </nav> -->
 
-<h1> <b> Welcome </b> <span id='firstName'> </span> </h1>
-<br>
-<div> <span id='uid'> </span> </div>
-<br><br><br>
-<!--<input value="Login" type="button" class="button" onclick="login()" />-->
-<!--<input value="Register" type="button" class="button" onclick="register()" />-->
-<!--<input value="Profile" type="button" class="button" onclick="profile()" />-->
-<!--<input value="Logout" type="button" class="button" onclick="gigya.accounts.logout()" />-->
-<!--<br><br><br>-->
-<!--<input value="Lite" type="button" class="button" onclick="lite()" />-->
-<!--<input value="Progression" type="button" class="button" onclick="progression()" />-->
-<!--<input value="Guest" type="button" class="button" onclick="guest()" />-->
-<!--<input value="Mobile Login" type="button" class="button" onclick="otp()" />-->
-<!--<input value="subscribe with SMS" type="button" class="button" onclick="SMS_subscriptions()" />-->
-<!--<input value="EmailOTP" type="button" class="button" onclick="EmailOTP()" />-->
-<!--<br><br><br>-->
-<!--<input value="Passwordless" type="button" class="button" onclick="passwordless()" />-->
-<!--<input value="Password Reset" type="button" class="button" onclick="resetPassword()" />-->
-<!--<input value="changeEmail" type="button" class="button" onclick="changeEmail()" />-->
-<!--<input value="passKey" type="button" class="button" onclick="passKey()" />-->
-<!--<input value="EditTFA" type="button" class="button" onclick="EditTFA()" />-->
-<!--<input value="RegisterTFA" type="button" class="button" onclick="RegisterTFA()" />-->
-<!--<input value="VerifyTFA" type="button" class="button" onclick="VerifyTFA()" />-->
-<!--<br><br><br>-->
 
-<div id="showScreenset"></div>
-<br><br>
-<!--<h1> <b> Account Info </b>  </span> </h1>-->
-<span id="accountInfoData"></span>
 
-<br><br>
-<!--<h1> <b> Events </b>  </span> </h1>-->
-<span id="sdkEventData"></span>
+
 
 
 </body>
