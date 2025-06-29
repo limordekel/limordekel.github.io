@@ -1,0 +1,13 @@
+// {
+//     "liveServer.settings.root": "/",
+//     "liveServer.settings.https": {
+//         "enable": true,
+//         "cert": "../certificate/localhost.pem",
+//         "key": "../certificate/localhost.key",
+//         "passphrase": "1111"
+//     },
+//     "liveServer.settings.donotShowInfoMsg": true,
+//     "liveServer.settings.host": "127.0.0.1",
+//     "liveServer.settings.logLevel": 2,
+//     "liveServer.settings.AdvanceCustomBrowserCmdLine": "chrome"
+// }

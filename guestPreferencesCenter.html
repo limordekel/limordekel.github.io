@@ -1,28 +1,31 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="css/guest.css">
-	<!-- Bashar's -->
+	
 	<!-- <script type="text/javascript" src="https://cdns.il3-st5.gigya.com/js/gigya.js?apiKey=6_2_GspSKrw8UdTl8f3md6bOrw"></script> -->
+	 <!-- Bashar's -->
 	<!-- <script type="text/javascript" src="https://cdns.il3-st5.gigya.com/js/gigya.js?apiKey=6_2_kTc3VTnIMy1NbHvtzIegXw"></script> -->
-	<script type="text/javascript" src="https://cdns.us1.gigya.com/js/gigya.js?apiKey=4_WbmlkSMk6iFGeslzSljFCA"></script>
+	<script type="text/javascript" src="https://cdns.us1.gigya.com/js/gigya.js?apiKey=4_tYyi4pg_MTQN0-iwNoRefA"></script>
+	 <!-- child -->
+	<!-- <script type="text/javascript" src="https://cdns.us1-st2.gigya.com/js/gigya.js?apiKey=4_OlWExOyLt2_cd5y5U6h0CA"></script> -->
+	 <!-- global -->
+	<!-- <script type="text/javascript" src="https://cdns.us1-st2.gigya.com/js/gigya.js?apiKey=4_VQVjye_tLehVbcEAI5xySQ"></script> -->
 </head>
 
 <body>
 	<script type="text/javascript">
 		window.onGigyaServiceReady = function (serviceName) {
-    // Preferences center landing page
-    gigya.session.authorize({
-        callback: (res) => {
-            if (res.errorCode === 0) {  // Success
-                gigya.accounts.showScreenSet({ screenSet: 'Default-PreferencesCenter', startScreen: 'gigya-privacy-screen' });
-            } else if (res.errorCode === 401003) {  // Authentication Required
-                gigya.accounts.showScreenSet({ screenSet: 'Default-PreferencesCenter', startScreen: 'gigya-preferences-center-auth-methods-screen' });
-			} else {  // Other errors
-				alert(JSON.stringify(res));
-			}
+	gigya.session.authorize({
+    callback: (res) => {
+        if (res.errorCode === 0) {  // Success
+            window.gigya.accounts.showScreenSet({
+                screenSet: 'Default-Communications',
+                startScreen: 'gigya-preferences-screen'
+            });
         }
-    });
-};
+	}
+});
+		}
 	</script>
 
 </body>

@@ -1,0 +1,22 @@
+{
+  "name": "limordekel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/limordekel/limordekel.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/limordekel/limordekel.github.io/issues"
+  },
+  "homepage": "https://github.com/limordekel/limordekel.github.io#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.48.2",
+    "@types/node": "^22.8.6",
+    "@zerostep/playwright": "^0.1.5"
+  }
+}

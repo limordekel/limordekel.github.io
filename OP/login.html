@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  
+  <!-- 4_bINiCCu-qSBbQen3eCOvkg -->
+	<script type="text/javascript" lang="javascript" async src="https://cdns.il3-st5.gigya.com/JS/gigya.oidc.js?apiKey=6_2_WZWhuMFmDTkeyQcegE11YA">
+		{
+			"errorURL": "https://op.gigya.com:1443/demoSite/OP/error.html",
+			"consentURL": "https://op.gigya.com:1443/demoSite/OP/consent.html",
+		}
+	</script>
+</head>
+<body>
+  <h1>OIDC Combined Login and Proxy Page</h1>
+  <div id="container"></div>
+  <script>
+    var onGigyaServiceReady = function () {
+      gigya.accounts.addEventHandlers({
+        onOidc: function (params) {
+          if (params.mode === 'login') {
+            gigya.accounts.showScreenSet({
+              screenSet: 'Default-RegistrationLogin',
+              containerID: "container",
+              sessionExpiration: '14400', // 4 hours
+              authFlow: 'redirect'
+            });
+          }
+        }
+      });
+    }
+  </script>
+</body>
+</html>
